@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { LoginComponent } from './features/login/login.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
       import('./features/about/about.module').then(m => m.AboutModule)
   },
   {
-    path: 'feature-list',
+    path: 'dashboard',
     loadChildren: () =>
       import('./features/feature-list/feature-list.module').then(
         m => m.FeatureListModule
@@ -25,9 +26,13 @@ const routes: Routes = [
       import('./features/settings/settings.module').then(m => m.SettingsModule)
   },
   {
-    path: 'examples',
+    path: 'beds',
     loadChildren: () =>
       import('./features/examples/examples.module').then(m => m.ExamplesModule)
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: '**',

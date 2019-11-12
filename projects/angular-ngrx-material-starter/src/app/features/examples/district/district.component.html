@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+      <div class="col-12">
+          <h2>District Plan & Accomplishment</h2>
+      </div>
+    </div>
+    <div class="row" [ngClass]="routeAnimationsElements">
+        <div class="col-md-10">
+            <em>serves as the overall district plan & accomplishment of the department/agency/OU</em>
+          </div>
+        <div  class="col-md-2">
+            <button style="margin:5px;" mat-raised-button class="information" (click)="exportcsv()">
+                EXPORT to EXCEL
+              </button> 
+              <br>
+        </div>
+  
+      </div>
+      <br>
+      <div [ngClass]="routeAnimationsElements">
+          <ag-grid-angular 
+            style="width: 100%; height: 400px;" 
+            class="ag-theme-balham"
+            [rowData]="rowData" 
+            [columnDefs]="columnDefs"
+            [columnTypes]="columnTypes"
+            [components]="components"
+            [defaultColDef]="defaultColDef"
+            [excelStyles]="excelStyles"
+            [autoGroupColumnDef]="autoGroupColumnDef"
+           
+            [groupDefaultExpanded]=-1
+            [groupRemoveSingleChildren]="false"
+            [rowSelection]="rowSelection"
+            [suppressAggFuncInHeader]= "true"
+            (gridReady)="onGridReady($event)"
+            (cellClicked)="onCellClicked($event)"
+            (cellValueChanged)="onCellValueChanged($event)"
+            >
+        </ag-grid-angular>
+        </div>
+        <div class="row item" [ngClass]="routeAnimationsElements">
+            <div class="col-9">
+                <h5>Last Updated: {{date_updated | amTimeAgo }}</h5>
+                <button style="margin:5px;" mat-button class="success" (click)="getLogs()">See Logs</button>
+            </div>
+          </div>
+
+</div>
+
+

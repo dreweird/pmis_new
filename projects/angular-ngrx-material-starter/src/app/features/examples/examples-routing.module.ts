@@ -12,6 +12,10 @@ import { CrudComponent } from './crud/components/crud.component';
 import { FormComponent } from './form/components/form.component';
 import { NotificationsComponent } from './notifications/components/notifications.component';
 import { UserComponent } from './simple-state-management/components/user.component';
+import { Bed1ContainerComponent } from './bed1/bed1-container/bed1-container.component';
+import { Bed2Component } from './bed2/bed2.component';
+import { Bed3ContainerComponent } from './bed3/bed3-container/bed3-container.component';
+import { DistrictComponent } from './district/district.component';
 
 const routes: Routes = [
   {
@@ -20,8 +24,28 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'todos',
+        redirectTo: 'authenticated',
         pathMatch: 'full'
+      },
+      {
+        path: 'bed1',
+        component: Bed1ContainerComponent,
+        data: { title: 'BED1' }
+      },
+      {
+        path: 'bed2',
+        component: Bed2Component,
+        data: { title: 'BED2' }
+      },
+      {
+        path: 'bed3',
+        component: Bed3ContainerComponent,
+        data: { title: 'BED3' }
+      },
+      {
+        path: 'district',
+        component: DistrictComponent,
+        data: { title: 'DISTRICT' }
       },
       {
         path: 'todos',

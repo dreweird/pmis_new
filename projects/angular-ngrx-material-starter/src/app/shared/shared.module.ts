@@ -24,6 +24,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSliderModule } from '@angular/material/';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -119,8 +122,11 @@ import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
     MatSnackBarModule,
     MatSlideToggleModule,
     MatDividerModule,
+    MatGridListModule,
+    MatDialogModule,
 
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxMatSelectSearchModule
   ],
   declarations: [
     BigInputComponent,
@@ -154,8 +160,11 @@ import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
     MatSliderModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatGridListModule,
+    MatDialogModule,
 
     FontAwesomeModule,
+    NgxMatSelectSearchModule,
 
     BigInputComponent,
     BigInputActionComponent,

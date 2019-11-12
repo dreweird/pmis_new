@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
+import { LoginComponent } from './features/login/login.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { AppComponent } from './app/app.component';
     // app
     AppRoutingModule
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

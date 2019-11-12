@@ -40,7 +40,7 @@ export class NotificationService {
 
   error(message: string) {
     this.show(message, {
-      duration: 3000,
+      duration: 5000,
       panelClass: 'error-notification-overlay'
     });
   }

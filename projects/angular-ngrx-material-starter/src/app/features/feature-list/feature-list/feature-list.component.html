@@ -1,30 +1,76 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <h1 rtl class="main-heading">{{ 'anms.features.title' | translate }}</h1>
+    <div class="col-md-12" [ngClass]="routeAnimationsElements">
+      <h1 class="main-heading">PMIS Dashboard</h1>
     </div>
   </div>
-  <div class="row align-items-end">
-    <div *ngFor="let feature of features" class="col-md-6 col-lg-4" [ngClass]="routeAnimationsElements">
+  <div class="row">
+    <div class="col-md-12" [ngClass]="routeAnimationsElements">
+      <h2>DA-Caraga Over-all Status </h2>
+    </div>
+    <!-- <div class="col-md-12" [ngClass]="routeAnimationsElements">
+      <h2>DA-Caraga Over-all Status <em>as of {{myDate  | amDateFormat:'LL'}} </em> </h2>
+    </div> -->
+  </div>
+  <div class="row">
+    <div class="col-md" [ngClass]="routeAnimationsElements">
       <mat-card>
-        <mat-card-title>
-          <code *ngIf="feature.version">{{feature.version}}</code>{{feature.name | translate}}
-        </mat-card-title>
-        <mat-card-subtitle rtl>
-          {{ feature.description | translate }}
-        </mat-card-subtitle>
-        <mat-card-actions>
-          <a *ngIf="feature.github" mat-icon-button [href]="feature.github" target="_blank">
-            <fa-icon [icon]="['fab','github']"></fa-icon>
-          </a>
-          <a mat-button [href]="feature.documentation" target="_blank">
-            <fa-icon icon="book"></fa-icon>{{ 'anms.features.documentation' | translate }}
-          </a>
-          <a *ngIf="feature.medium" mat-button [href]="feature.medium" target="_blank">
-            <fa-icon [icon]="['fab','medium-m']"></fa-icon>{{ 'anms.features.guide' | translate }}
-          </a>
-        </mat-card-actions>
+          <mat-grid-list cols="2" rowHeight="2:1">
+              <mat-grid-tile> <img class="image" src="assets/coin-stack.png" /> </mat-grid-tile>
+              <mat-grid-tile> <h2 class="center">Financial: <em >{{da_fin}}</em> </h2> </mat-grid-tile>
+          </mat-grid-list>
+      
       </mat-card>
     </div>
+    <div class="col-md" [ngClass]="routeAnimationsElements">
+      <mat-card>
+          <mat-grid-list cols="2" rowHeight="2:1">
+              <mat-grid-tile> <img class="image" src="assets/target.png" /> </mat-grid-tile>
+              <mat-grid-tile>  <h2 class="center">Physical: <em >{{da_phys}}</em> </h2> </mat-grid-tile>
+          </mat-grid-list>
+      
+      </mat-card>
+    </div>
+    <div class="col-md" [ngClass]="routeAnimationsElements">
+      <mat-card>
+      
+        <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile> <img class="image" src="assets/approve-invoice.png" /> </mat-grid-tile>
+            <mat-grid-tile> <h2 class="center">Disbursement: <em >{{da_dis}}</em> </h2> </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card>
+    </div>
+</div> 
+ 
+  
+  <div class="row">
+    <div class="col-md-12" [ngClass]="routeAnimationsElements">
+        <button mat-raised-button  (click)="show = !show; render()">{{show ? 'COMMULATIVE' : 'NON-COMMULATIVE'}}</button>
+        <button mat-raised-button  (click)="show2 = !show2;fin_percentage()">{{show2 ? 'PERCENTAGE - ANNUAL' : 'PERCENTAGE - MONTHLY'}}</button>
+        <mat-card>
+        <div id="da_finChart" style="height: 370px; width: 100%;"></div>
+    </mat-card>
+    </div>
+</div>
+  <div class="row">
+      <div class="col-md-12" [ngClass]="routeAnimationsElements">
+        <p>You can click the Programs/OUs in the table to see the separate chart</p>
+    <ag-grid-angular 
+    style="width: 100%; height: 400px;" 
+    class="ag-theme-balham"
+    [rowData]="rowData" 
+    [columnDefs]="columnDefs"
+    [columnTypes]="columnTypes"
+    [defaultColDef]="defaultColDef"
+    [rowSelection]="rowSelection"
+    (cellClicked)="routeProgram($event)"
+
+    (gridReady)="onGridReady($event)"
+  
+    >
+</ag-grid-angular>
+<br><br>
+</div>
+
   </div>
 </div>
