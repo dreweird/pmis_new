@@ -367,15 +367,16 @@ export class DistrictComponent implements OnInit, OnChanges {
           return params.column.colDef.headerName;
         }
       },
-      shouldRowBeSkipped: function(params) {
-        //console.log(params);
-        return params.node.group && params.node.childrenAfterGroup.length == 1;
-      },
+      // shouldRowBeSkipped: function(params) {
+      //   return params.node.group && params.node.childrenAfterGroup.length == 1;
+      // },
       processCellCallback: function(params) {
         var node = params.node;
         console.log(params);
         if (node.group && params.column.colDef.field == 'mfo_name')
           return node.key;
+        else if (node.group && params.column.colDef.field != 'mfo_name')
+          return '';
         else if (
           params.column.colDef.headerName == 'Total Cost' &&
           isNaN(params.value)
@@ -393,10 +394,21 @@ export class DistrictComponent implements OnInit, OnChanges {
     month: string,
     beds: number
   ) {
-    const uid = JSON.parse(localStorage.getItem('currentUser'));
+    //const uid = JSON.parse(localStorage.getItem('currentUser'));
     // console.log("4 here");
+    console.log(this.user.user.pid);
     this.mfoService
-      .updateLogs(id, value, uid.pid, col, month, beds, null, null, null)
+      .updateLogs(
+        id,
+        value,
+        this.user.user.pid,
+        col,
+        month,
+        beds,
+        null,
+        null,
+        null
+      )
       .subscribe(data => console.log(data));
   }
 
@@ -426,10 +438,13 @@ export class DistrictComponent implements OnInit, OnChanges {
   }
 
   getLogs() {
+    if (this.pid === 0) {
+      this.pid = this.user.user.pid;
+    }
     this.dialog.open(logDialog, {
       data: {
         beds: 4,
-        pid: this.user.user.pid
+        pid: this.pid
       }
     });
   }

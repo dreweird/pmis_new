@@ -268,6 +268,8 @@ export class Bed2Component implements OnInit, OnChanges {
         console.log(params);
         if (node.group && params.column.colDef.field == 'mfo_name')
           return node.key;
+        else if (node.group && params.column.colDef.field != 'mfo_name')
+          return '';
         else if (
           params.column.colDef.headerName == 'Total Cost' &&
           isNaN(params.value)
